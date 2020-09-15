@@ -4,18 +4,12 @@
 #
 # For use with PiCAN FD board
 # http://skpang.co.uk/catalog/canbus-fd-board-with-real-time-clock-for-raspberry-pi-3-p-1545.html
-#
 
-import RPi.GPIO as GPIO
 import os
 import can
 import time
 led = 22
 count = 0
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(led,GPIO.OUT)
-GPIO.output(led,True)
 
 print('\n\rCAN Tx test')
 print('Bring up CAN0....')
@@ -28,7 +22,6 @@ try:
 	bus = can.interface.Bus(channel='can0', bustype='socketcan_native',fd = True)
 except OSError:
 	print('Cannot find PiCAN FD board.')
-	GPIO.output(led,False)
 	exit()
 print('Ready')	
 
